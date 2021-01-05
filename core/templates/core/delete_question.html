@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="shadow-lg row rounded">
+            <div class="col-4">
+                <p>¿Está Seguro que desea Borrar {{object_name}} con la identificación {{object_pk}}?</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

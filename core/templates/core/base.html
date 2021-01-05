@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load core_extras %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/auxiliary.css' %}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container-fluid">
+        <a href="{% url 'index' %}" class="navbar-brand">
+
+          <img src="{% static 'img/main-logo.png' %}" class="main-logo" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="link-item nav-link active" href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" id="NavbarDropdown" data-bs-toggle="dropdown" class="link-item nav-link dropdown-toggle">Productos</a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'productos' %}" class="dropdown-item">Listado</a></li>
+                <li><a href="{% url 'categorias' %}" class="dropdown-item">Categorías</a></li>
+              </ul>
+            </li>
+            <li class="navbar-item">
+              <a href="{% url 'clientes' %}" class="link-item nav-link">Clientes</a>
+            </li>
+            <li class="navbar-item">
+              <a href="{% url 'ventas' %}" class="link-item nav-link">Ventas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+  {% block content %} {% endblock %}
+  
+  <footer>
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+    <div class="col-4">
+    {% if page_obj %}
+  <nav aria-label="...">
+  
+    <ul class="pagination">
+    {% if page_obj.has_previous %}
+    
+      <li class="page-item">
+        <a class="page-link" href="{% url 'productos' page=page_obj.previous_page_number %}" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+    {% endif %}
+      {% for page_number in total_pages %}
+      
+      {% if page_number == page_obj.number%}
+      
+        <li class="page-item active"><a class="page-link" href="{% url 'productos' page=page_number%}">{{page_number}}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="{% url 'productos' page=page_number%}">{{page_number}}</a></li>
+      {% endif %}
+        {% comment %} <li class="page-item active" aria-current="page">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li> {% endcomment %}
+      
+      {% endfor %}
+      {% if page_obj.has_next %}
+      
+      
+        <li class="page-item">
+        <a class="page-link" href="{% url url_name page=page_obj.next_page_number %}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% else %}
+  {% endif %}
+    
+    </div>
+    </div>
+      <div class="row polygon-footer justify-content-center align-items-center">
+        <div class="col-5">
+          <h3 class="text-white text-center">Soporte: augustocarrillo20@gmail.com</h3>
+
+        </div>
+      </div>
+      <p class="text-center">Bucellarii Systems, Todos los derechos reservados 2020 &copy</p>
+    </div>
+    <div class="">
+    </div>
+  </footer>
+  <!-- Sortable JS - CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/pass-info.js' %}"></script>
+  <script src="{% static 'js/main_scripts.js' %}"></script>
+  
+</body>
+
+</html>

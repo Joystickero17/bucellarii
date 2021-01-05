@@ -1,0 +1,23 @@
+{% extends "core/entity_list.html" %}
+
+{% load core_extras %}
+
+{% block content_entity %}
+                {% for product in object_list %}
+                
+                    <tr onclick=javascript:redirect('{% url ""|addstr:url_name|addstr:"_update" pk=product.pk%}')>
+                        <td>{{product.pk}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.category}}</td>
+                        {% if product.iva > 0 %}
+                        
+                            <td>{{product.iva}} %</td>
+                        {% else %}
+                            <td>Excento</td>
+                        {% endif %}
+                        <td>{{product.price}}</td>
+                        <td>{{product.total}}</td>
+                        <td><button id="btn-modal" onclick="javascript:pass_info(this.parentElement.parentElement)" href="#" data-bs-toggle="modal" data-bs-target="#aviso-borrar" class="btn btn-outline-danger">Borrar</button></td>
+                    </tr>
+                {% endfor %}
+{% endblock %}

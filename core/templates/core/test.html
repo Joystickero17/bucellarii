@@ -1,0 +1,69 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>1 - Busque y Seleccione Cliente a facturar:</h4>
+        </div>
+    </div>
+    <div class="row my-5 justify-content-center">
+
+        <div class="col-6">
+        <form action="" method="post">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-8">
+                    <input class="form-control" type="text">
+                </div>
+                <div class="col-4">
+                
+                    <button class="btn btn-outline-success">Buscar</button>
+                </div>
+            </div>
+            
+            
+        </form>
+        </div>
+    </div>
+<div class="row">
+    <h3>2 - Seleccione los productos a vender:</h3>
+</div>
+<div class="row my-5 shadow-lg justify-content-center" >
+        <small>* Precios Incluyen IVA</small>
+        <div id="lista1" class="col-4 m-5">
+        <h4>Seleccionados:</h4>
+        
+        </div>
+        <div id="lista2" class="col-4 m-5">
+        <h4>Lista de Productos Disponibles:</h4>
+        <div class="my-3">
+            <input type="text" class="form-control d-inline-block" name="product_search" id="product_search" style="width:70%;">
+            <button class="btn btn-outline-success">Buscar</button>
+        
+        </div>
+            {% for product in product_list %}
+                
+                    <div class="card mb-3" style="max-width: 540px">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img class="img-fluid" src="{% static 'img/comida1.jpg' %}" alt="..." style="width:5vw;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size:2vh;">{{product.name}}</h5>
+                                    <p hidden id="pk_productos">{{product.pk}}</p>
+                                    <p class="card-text" id="precio" style="font-size:3vh;">{{product.total}} BsS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

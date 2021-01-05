@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load core_extras %}
+{% block content %}
+
+<div class="container">
+
+    {% if 'delete' in request.GET %}
+
+    <div class="alert alert-success" role="alert">
+        {{url_name}} borrado(s) con éxito!!
+      </div>
+
+    {% endif %}
+    <div class="row my-5 align-items-center">
+        <div class="col-3">
+            <img class="img-fluid" src="{% static 'img/'|addstr:url_name|addstr:'_list.svg' %}" alt="">
+
+        </div>
+        <div class="col-6">
+            <h3>Listado de {{url_name|upper}}</h3>
+            <a href="{% url ''|addstr:url_name|addstr:'_insert' %}" class="btn btn-outline-success">Añadir {{url_name}}  +</a>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="aviso-borrar">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Advertencia</h3>
+                </div>
+                <div class="modal-body">Está Seguro que desea Borrar siguiente elemento:
+                    <p id="content-destiny"></p>
+                </div>
+                <div class="modal-footer">
+                    <a id="yes_delete" href="{% url ''|addstr:url_name|addstr:'' %}" class="btn btn-primary">Si</a>
+                    <button class="btn btn-primary" onclick="reload_page()" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr id="headers">
+                {% for theader in theaders %}
+                <td>{{theader}}</td>
+                {% endfor %}
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% block content_entity %}
+            {% endblock %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+</div>
+
+{% endblock %}

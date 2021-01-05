@@ -1,0 +1,12 @@
+- módulo de últimas ventas realizadas.
+- cliente estrella.
+- producto más vendido.
+
+Requisitos para un sistema administrativo:
+
+Compatibilidad con impresora Fiscal
+opcion para facturación de excentos y grabados, con varias alicuotas.
+descuento o devolución (anulación de factura)
+Reporte Z:
+sumatorias de las ventas, excentas y grabadas, con sus respectivas alicuotas,
+ragno de ventas según número de facturas

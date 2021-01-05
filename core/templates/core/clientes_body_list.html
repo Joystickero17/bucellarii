@@ -1,0 +1,16 @@
+{% extends "core/entity_list.html" %}
+{% load core_extras %}
+
+{% block content_entity %}
+                {% for client in object_list %}
+                
+                    <tr onclick=javascript:redirect('{% url ""|addstr:url_name|addstr:"_update" pk=client.pk%}')>
+                        <td>{{client.pk}}</td>
+                        <td>{{client.name}}</td>
+                        <td>{{client.last_name}}</td>
+                        <td>{{client.cedula}}</td>
+                        <td>{{client.tipo_persona}}</td>
+                        <td><button id="btn-modal" onclick="javascript:pass_info(this.parentElement.parentElement)" href="#" data-bs-toggle="modal" data-bs-target="#aviso-borrar" class="btn btn-outline-danger">Borrar</button></td>
+                    </tr>
+                {% endfor %}
+{% endblock %}
