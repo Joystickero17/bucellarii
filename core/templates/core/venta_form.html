@@ -3,75 +3,95 @@
 
 {% block content %}
 <div class="container">
-<div class="row">
-    <h3>Seleccione los productos a vender:</h3>
-</div>
-<div class="row my-5 shadow-lg justify-content-center" >
-        <small>* Precios Incluyen IVA</small>
-        <div id="lista1" class="col-4 m-5">
-        <h4>Seleccionados:</h4>
-               
-        {% for selected in form.instance.productos.all %}
-            {% for product in form.fields.productos.choices %}
-                {% if selected.pk == product.0 %}
-                    <div class="card mb-3" style="max-width: 540px">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img class="img-fluid" src="{% static 'img/comida1.jpg' %}" alt="..." style="width:5vw;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-size:2vh;">{{selected.name}}</h5>
-                                <p hidden id="pk_productos">{{selected.pk}}</p>
-                                <p class="card-text" id="precio" style="font-size:3vh;">{{selected.total}} BsS</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-            
-            {% endfor %}
-        {% endfor %}
+    <div class="row mt-5 justify-content-center">
+      <div class="d-flex col-6 align-items-end">
+        <div class="d-flex flex-column mr-2 col-6">
+          <small> Busqueda y/o inserción de clientes</small>
+          <input type="text" class="form-control" name="" id="clients-search">
+        </div>
+        <button class="btn btn-purple" id="clients-search-btn">Buscar</button>
+      </div>
+      <div class="col-6 border border-secondary client-list-search rounded" id="client-list-results">
+        <h4>Cliente Seleccionado:</h4>
         
-        </div>
-        <div id="lista2" class="col-4 m-5">
-        <h4>Lista de Productos Disponibles:</h4>
-            {% for product in form.productos.field.queryset.all %}
-                {% if not product in form.instance.productos.all %}
-                    <div class="card mb-3" style="max-width: 540px">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img class="img-fluid" src="{% static 'img/comida1.jpg' %}" alt="..." style="width:5vw;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="font-size:2vh;">{{product.name}}</h5>
-                                    <p hidden id="pk_productos">{{product.pk}}</p>
-                                    <p class="card-text" id="precio" style="font-size:3vh;">{{product.total}} BsS</p>
-                                </div>
-                            </div>
+      </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+      <h5>Busqueda de productos:</h5>
+        <div class="col-5 product-list-search rounded">
+            
+            <div class="d-flex justify-content-center m-2">
+
+                <input type="text" class="form-control search_product rounded-pill" id="products-search">
+                <button class="btn btn-primary rounded-pill" id="products-search-btn">Buscar</button>
+            </div>
+            
+            <div class="d-flex flex-column justify-content-center m-2" id="product-list-results">
+
+                <div class="card mb-3 card-size-fix" >
+                    <div class="row d-flex flex-nowrap">
+                      <div class="col-4">
+                        <img src="{% static 'img/comida1.jpg' %}" class="img-product-search" alt="...">
+                      </div>
+                      <div class="col-8">
+                        <div class="card-body">
+                          <h5 class="card-title responsive-text">Producto Nombre</h5>
+                          <p class="card-text responsive-text">descripción del producto</p>
+                          <button class="btn btn-success d-block"><i class="fas fa-plus-circle"></i></button>
                         </div>
+                      </div>
+                      
                     </div>
-                {% endif %}
-            {% endfor %}
+                  </div>
+                
+            </div>
+            
+
+        </div>
+        <div class="col-6">
+
+            
+            <table class="table table-hover responsive-text">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Cant.</th>
+                        <th>Producto</th>
+                        <th>precio</th>
+                        <th>total</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>Carne Roja</th>
+                        <th>65$</th>
+                        <th>65$</th>
+                        
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <h4>Seleccione Cliente a facturar:</h4>
-        </div>
-    </div>
+
+
     <div class="row my-5 justify-content-center">
 
         <div class="col-6">
-        <form method="post">
-        {%csrf_token%}
-            {{form.as_p}}
-            <button class="btn btn-outline-primary">Registrar</button>
-        </form>
+            <!-- <form method="post">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button class="btn btn-outline-primary">Registrar</button>
+            </form> -->
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary m-2">Cerrar Orden</button>
+          <button class="btn btn-success m-2"> Guardar Orden</button>
+          <button class="btn btn-danger m-2">Cancelar</button>
         </div>
     </div>
 </div>
 
 {% endblock %}
-

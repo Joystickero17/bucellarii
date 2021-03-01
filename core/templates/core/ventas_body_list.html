@@ -19,5 +19,10 @@
                         <!-- Botón de borrado -->
                         <td><button id="btn-modal" onclick="javascript:pass_info(this.parentElement.parentElement)" href="#" data-bs-toggle="modal" data-bs-target="#aviso-borrar" class="btn btn-outline-danger">Borrar</button></td>
                     </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6"><h3 class="text-center">Sin registros :(</h3></td>
+                
+                </tr>
                 {% endfor %}
 {% endblock %}

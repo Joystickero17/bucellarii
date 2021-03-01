@@ -60,7 +60,7 @@ class Producto(models.Model):
         return super().save(*args,**kwargs)
 
 class TipoVenta(models.Model):
-    name = models.CharField(max_length=120)
+    nomen = models.CharField(max_length=120)
     def __str__(self):
         return self.name
 
@@ -80,3 +80,4 @@ class VentaProductos(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.SET_NULL, null=True)
     cantidad = models.IntegerField()
     fecha_anidado = models.DateTimeField(auto_now_add=True, null=True)
+

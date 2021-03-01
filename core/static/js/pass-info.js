@@ -1,3 +1,4 @@
+/* esto es para hacer funcionar los modales */
 function pass_info(table_row){
     let container = document.getElementById("content-destiny");
     let headers = document.getElementById("headers").children;

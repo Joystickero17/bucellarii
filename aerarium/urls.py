@@ -16,7 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import core.views as views
+
+ASYNC_PREFIX = "async/"
+
 urlpatterns = [
+    #Async Views
+    path(ASYNC_PREFIX + "clients", views.ClientsAsyncView.as_view(), name="async_clients"),
     path('admin/', admin.site.urls),
     path("", views.InicioEsp.as_view(), name="index"),
     path("productos", views.ProductView.as_view(), name="productos"),

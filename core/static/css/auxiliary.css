@@ -15,3 +15,41 @@
 tr:hover{
     cursor: pointer;
 }
+
+input.search_product{
+    width: 20rem;
+    margin-right: 5px;
+}
+
+.responsive-text{
+    font-size: 1vw;
+}
+
+.img-product-search{
+    
+    max-height: 120px;
+}
+
+.billing-list{
+    width: 5vw;
+}
+
+.card-size-fix{
+    width: 25rem;
+}
+
+.product-list-search{
+    overflow-y: scroll;
+    max-height: 300px;
+}
+.client-list-search{
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.btn-purple{
+    background-color: purple;
+    color: white;
+    margin-left: 5px;
+    height: 38px;
+}

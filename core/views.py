@@ -5,10 +5,24 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import ModelFormMixin, UpdateView, CreateView
 from core.models import Producto, Cliente, Venta, Categoria
 from .forms import ProductoForm, ClienteForm, VentaForm, CategoryForm
+from django.http import JsonResponse
 
 # Create your views here.
 APPNAME = "core"
 
+class JsonGeneralView(View):
+    model = None
+    def get(self, *args, **kwargs):
+        model_list = list(self.model.objects.all().values())
+        
+        return JsonResponse({"object_list":model_list})
+
+class ClientsAsyncView(JsonGeneralView):
+    model = Cliente
+
+class ProductsAsyncView(JsonGeneralView):
+    model = Producto
+        
 
 class Base(View):
     title = "Undefined"
@@ -134,7 +148,7 @@ class VentasView(VentaData, ExtendedListView):
 
 class CategoriaView(CategoriaData, ExtendedListView):
     paginate_by = 10
-    theaders = ["Cateogoría Padre","Categoría"]
+    theaders = ["Categoría Padre","Categoría"]
 
 
 class ProductView(ProductosData, ExtendedListView):
