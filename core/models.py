@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class TipoPersona(models.Model):
@@ -12,10 +13,18 @@ class TipoPersona(models.Model):
 
 
 class Cliente(models.Model):
+    NATURAL = 'N'
+    JURIDICA = 'J'
+
+    TIPO_PERSONA_CHOICES = (
+        (NATURAL, 'Natural' ),
+        (JURIDICA, 'Juridica'),
+        )
+
     name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     cedula = models.CharField(max_length=50, unique=True)
-    tipo_persona = models.ForeignKey(TipoPersona, on_delete=models.RESTRICT)
+    tipo_persona = models.CharField(max_length=2, choices=TIPO_PERSONA_CHOICES, default=NATURAL)
     class Meta:
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"

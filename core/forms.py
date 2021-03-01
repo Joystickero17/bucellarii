@@ -26,14 +26,15 @@ class ProductoForm(forms.ModelForm):
 
 class ClienteForm(forms.ModelForm):
     object_list = TipoPersona.objects.all()
-    tipo_persona = forms.ModelChoiceField(label="Tipo de Persona:",queryset=object_list, widget=forms.Select(attrs=BS4_FORM_DICT))
+    
     class Meta:
         model = Cliente
         fields = "__all__"
         widgets = {
             'name':forms.TextInput(attrs=BS4_FORM_DICT),
             'last_name': forms.TextInput(attrs=BS4_FORM_DICT),
-            'cedula': forms.NumberInput(attrs=BS4_FORM_DICT)
+            'cedula': forms.NumberInput(attrs=BS4_FORM_DICT),
+            'tipo_persona': forms.Select(attrs=BS4_FORM_DICT)
         }
         labels = {
             'name': 'Nombres:',
