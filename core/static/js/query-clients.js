@@ -68,7 +68,7 @@ class ProductListView extends ListView{
 class ClientesListView extends ListView{
     htmlSingleElement(data){
         var htmlText = `<div class="card border-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">${data.name}</div>
+              <div class="card-header">${data.name} ${data.last_name}</div>
               <div class="card-body text-dark">
             
             <p class="card-text">identidad: ${data.cedula}</p>

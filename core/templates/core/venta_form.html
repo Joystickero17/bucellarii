@@ -3,21 +3,24 @@
 
 {% block content %}
 <div class="container">
-    <div class="row mt-5 justify-content-center">
-      <div class="d-flex col-6 align-items-end">
+    <div class="row mt-5 justify-content-center d-flex flex-column">
+      <div class="d-flex col-12 align-items-end justify-content-center">
         <div class="d-flex flex-column mr-2 col-6">
           <small> Busqueda y/o inserción de clientes</small>
           <input type="text" class="form-control" name="" id="clients-search">
         </div>
         <button class="btn btn-purple" id="clients-search-btn">Buscar</button>
       </div>
-      <div class="col-6 border border-secondary client-list-search rounded" id="client-list-results">
+      <div class="col-12 mt-3 border border-secondary client-list-search rounded" >
         <h4>Cliente Seleccionado:</h4>
+        <div class='d-flex flex-nowrap' id="client-list-results">
+          
+        </div>
         
 </div>
       </div>
     </div>
-    <div class="row mt-5 justify-content-center">
+    <div class="row mt-5 mx-2 justify-content-center">
       <h5>Busqueda de productos:</h5>
         <div class="col-5 product-list-search rounded">
             
