@@ -15,6 +15,7 @@ class ProductoForm(forms.ModelForm):
             'price': forms.NumberInput(attrs=BS4_FORM_DICT),
             'iva': forms.Select(choices=[("0","Excento"),("12","12%"),("10","10%"),("9","9%")],attrs=BS4_FORM_DICT),
             'total': forms.NumberInput(attrs={"hidden":""}),
+            'img':forms.FileInput(attrs={"class":"form-control"})
             
         }
         labels = {

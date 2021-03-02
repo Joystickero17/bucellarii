@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import core.views as views
-
-ASYNC_PREFIX = "async/"
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     #Async Views
-    path(ASYNC_PREFIX + "clients", views.ClientsAsyncView.as_view(), name="async_clients"),
+    path("async/products", views.ProductsAsyncView.as_view(), name="async_products"),
+    path("async/clients", views.ClientsAsyncView.as_view(), name="async_clients"),
     path('admin/', admin.site.urls),
     path("", views.InicioEsp.as_view(), name="index"),
     path("productos", views.ProductView.as_view(), name="productos"),
@@ -42,4 +43,4 @@ urlpatterns = [
     path("categorias/insert", views.CategoriaEditView.as_view(), name="categorias_insert"),
     path("categorias/update/<int:pk>", views.CategoriasUpdate.as_view(), name="categorias_update"),
     path("test", views.checkout, name="prueba")
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -55,6 +55,7 @@ class Categoria(models.Model):
 
 
 class Producto(models.Model):
+    img = models.ImageField(upload_to="products", null=True)
     name = models.CharField(max_length=150)
     category = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
     price = models.FloatField(null=True)
