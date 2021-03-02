@@ -1,19 +1,14 @@
 const HOST = 'http://127.0.0.1:8000/'
 const STATICROOT = 'media/'
 
+/* 
+en este archivo se guardan las clases para construir listas a partir de las llamadas 
+asincronas, y un elemento del html
+
+clase ListView
+ */
 
 
-function fill_list(){
-
-}
-
-function empty_list(){
-
-}
-
-function remove_list_item(){
-
-}
 
 class ListView{
     constructor(htmlId, urlAsyncGet){
@@ -70,9 +65,24 @@ class ProductListView extends ListView{
     }
 }
 
+class ClientesListView extends ListView{
+    htmlSingleElement(data){
+        var htmlText = `<div class="card border-dark mb-3" style="max-width: 18rem;">
+              <div class="card-header">${data.name}</div>
+              <div class="card-body text-dark">
+            
+            <p class="card-text">identidad: ${data.cedula}</p>
+          </div>
+  `
+        return htmlText
+    }
+}
+
 
 document.addEventListener("DOMContentLoaded", ()=>{
     const productos = new ProductListView("product-list-results", "async/products");
+    const clientes = new ClientesListView("client-list-results", 'async/clients');
+    clientes.buildList();
     productos.buildList();
 })
 

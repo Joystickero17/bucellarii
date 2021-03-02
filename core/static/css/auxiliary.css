@@ -27,7 +27,8 @@ input.search_product{
 
 .img-product-search{
     
-    max-height: 120px;
+    width:120px;
+    height: 120px;
 }
 
 .billing-list{
@@ -44,7 +45,7 @@ input.search_product{
 }
 .client-list-search{
     overflow-y: scroll;
-    max-height: 300px;
+    max-height: 250px;
 }
 
 .btn-purple{
