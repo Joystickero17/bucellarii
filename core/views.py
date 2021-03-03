@@ -13,8 +13,11 @@ APPNAME = "core"
 class JsonGeneralView(View):
     model = None
     def get(self, *args, **kwargs):
-        model_list = list(self.model.objects.all().values())
-        
+        if "keyword" not in self.request.GET.keys():
+            model_list = list(self.model.objects.all().values())
+        else:
+            model_list = list(self.model.objects.filter(name__contains=self.request.GET["keyword"]).values())
+        print(model_list)
         return JsonResponse({"object_list":model_list})
 
 class ClientsAsyncView(JsonGeneralView):

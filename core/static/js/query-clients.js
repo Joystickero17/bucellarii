@@ -10,43 +10,88 @@ clase ListView
 
 
 
-class ListView{
-    constructor(htmlId, urlAsyncGet){
+class ListView {
+    constructor(htmlId, urlAsyncGet, meta = { onChangeElement: "", loaderElement: "" }) {
         this.documentElement = document.getElementById(htmlId);
         this.urlAsyncGet = urlAsyncGet;
-        console.log(this.documentElement);
+        this.onChangeElement = document.getElementById(meta.onChangeElement);
+        this.loaderElement = document.getElementById(meta.loaderElement);
+
+        if (this.onChangeElement) {
+            this.onChangeElement.addEventListener("input", (e) => { this.buildList(e.target.value) })
+        }
+
+        if (!this.loaderElement) {
+            // obligatoriamente se debe definir un elemento loader para la espera de las consultas asíncronas
+            throw "Must Define LoaderElement, in meta object of init";
+        }
+
+        if (this.documentElement) {
+
+            this.buildList();
+        }
+
+
     }
 
-    htmlSingleElement(data){
+    loading(){
+        
+        this.loaderElement.style.visibility = "visible";
+    }
+
+    loaded(){
+        this.loaderElement.style.visibility = "hidden";
+    }
+
+    htmlSingleElement(data) {
         //pass
     }
 
-    clearList(){
+    clearList() {
         this.documentElement.innerHTML = "";
     }
 
-    buildList(){
-        fetch(HOST+this.urlAsyncGet)
-        .then(data=>{
-           return data.json()
+    buildList(keyword) {
+        this.clearList();
+        this.loading();
+        if (keyword) {
+            fetch(HOST + this.urlAsyncGet + "?keyword=" + keyword)
+                .then(data => {
+                    
+                    return data.json()
+                }
+
+                ).then((item) => {
+                    this.loaded();
+                    this.fillList(item["object_list"]);
+                })
+        } else {
+            fetch(HOST + this.urlAsyncGet)
+                .then(data => {
+                    
+                    return data.json()
+                }
+
+                ).then((item) => {
+                    this.loaded();
+                    this.fillList(item["object_list"]);
+                })
         }
 
-        ).then((item)=>{
-            this.fillList(item["object_list"]);
-        })
     }
 
-    fillList(data){
+    fillList(data) {
         console.log(data);
-        data.map((element)=>{
+        data.map((element) => {
             this.documentElement.insertAdjacentHTML("beforeend", this.htmlSingleElement(element));
         })
     }
 }
 
-class ProductListView extends ListView{
-    htmlSingleElement(data){
-        var htmlText = `<div class="card mb-3 card-size-fix" >
+class ProductListView extends ListView {
+    htmlSingleElement(data) {
+        var htmlText = `
+    <div class="card mb-3 card-size-fix" >
     <div class="row d-flex flex-nowrap">
       <div class="col-4">
         <img src="${HOST}${STATICROOT}${data["img"]}" class="img-product-search" alt="...">
@@ -61,13 +106,13 @@ class ProductListView extends ListView{
       
     </div>
   </div>`
-    return htmlText
+        return htmlText
     }
 }
 
-class ClientesListView extends ListView{
-    htmlSingleElement(data){
-        var htmlText = `<div class="card border-dark mb-3" style="max-width: 18rem;">
+class ClientesListView extends ListView {
+    htmlSingleElement(data) {
+        var htmlText = `<div class="card border-dark mx-3 mb-3" style="max-width: 18rem;">
               <div class="card-header">${data.name} ${data.last_name}</div>
               <div class="card-body text-dark">
             
@@ -79,11 +124,10 @@ class ClientesListView extends ListView{
 }
 
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    const productos = new ProductListView("product-list-results", "async/products");
-    const clientes = new ClientesListView("client-list-results", 'async/clients');
-    clientes.buildList();
-    productos.buildList();
+document.addEventListener("DOMContentLoaded", () => {
+    const productos = new ProductListView("product-list-results", "async/products", { onChangeElement: "products-search", loaderElement:"products-loader" });
+    const clientes = new ClientesListView("client-list-results", 'async/clients', { onChangeElement: "clients-search", loaderElement: "clients-loader" });
+
 })
 
 /*var client_list = document.getElementById("client-list-results"); */
