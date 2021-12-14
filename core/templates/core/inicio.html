@@ -3,72 +3,68 @@
 
 {% block content %}
 <div class="container">
-    <div class="row my-5">
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/products.svg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Productos</h5>
-                    <p class="card-text">Registro de Productos y Servicios.</p>
-                    <a href="{% url 'productos' page=1 %}" class="btn btn-primary">Ir al registro</a>
-                </div>
-            </div>
+    <div class="row justify-content-around my-5">
+        <div class="col-9 col-md-3 border rounded p-3 m-1">
+
+            <img src="{% static 'img/products.svg' %}" class="img-fluid h-50" alt="...">
+
+            <h5 class="my-3">Productos</h5>
+            <p class="h-10">Registro de Productos y Servicios.</p>
+            <a href="{% url 'productos' page=1 %}" class="btn btn-primary d-block d-sm-block d-md-inline-block">Ir al registro</a>
+
+
         </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/clientes.svg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Clientes</h5>
-                    <p class="card-text">Registro de Clientes para facturación.</p>
-                    <a href="{% url 'clientes' page=1 %}" class="btn btn-primary">Ir al registro</a>
-                </div>
-            </div>
+        <div class="col-9 col-md-3 border rounded p-3 m-1">
+
+            <img src="{% static 'img/clientes.svg' %}" class="img-fluid h-50" alt="...">
+
+            <h5 class="my-3">Clientes</h5>
+            <p class="h-10">Registro de Clientes para facturación.</p>
+            <a href="{% url 'clientes' page=1 %}" class="btn btn-primary d-block d-sm-block d-md-inline-block">Ir al registro</a>
+
         </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/ventas.svg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Ventas</h5>
-                    <p class="card-text">Registro de Ventas, Facturas y su histórico, así como totales</p>
-                    <a href="{% url 'ventas' page=1 %}" class="btn btn-primary">Ir al registro</a>
-                </div>
+        <div class="col-9 col-md-3 border rounded p-3 m-1">
+            <img src="{% static 'img/ventas.svg' %}" class="img-fluid h-50" alt="...">
+            <h5 class="my-3">Ventas</h5>
+            <p class="h-10">Registro de Ventas, Facturas y su histórico, así como totales</p>
+            <a href="{% url 'ventas' page=1 %}" class="btn btn-primary d-block d-sm-block d-md-inline-block">Ir al registro</a>
+        </div>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-12 bg-primary rounded-pill">
+        <h4 class="text-center text-white">Estadística</h4>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Clientes</div>
+            <div class="card-body">
+                <h5 class="card-title">Clientes Registrados</h5>
+                <p class="card-text">{{q_clientes}}</p>
             </div>
         </div>
     </div>
-    <div class="row mb-5">
-        <div class="col-12 bg-primary rounded-pill">
-            <h4 class="text-center text-white">Estadística</h4>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Clientes</div>
-                <div class="card-body">
-                    <h5 class="card-title">Clientes Registrados</h5>
-                    <p class="card-text">{{q_clientes}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Ventas</div>
-                <div class="card-body">
-                    <h5 class="card-title">Ventas del mes</h5>
-                    <p class="card-text">15</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Ventas</div>
-                <div class="card-body">
-                    <h5 class="card-title">Total Ventas del Mes</h5>
-                    <p class="card-text">15.000$</p>
-                </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Ventas</div>
+            <div class="card-body">
+                <h5 class="card-title">Ventas del mes</h5>
+                <p class="card-text">15</p>
             </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Ventas</div>
+            <div class="card-body">
+                <h5 class="card-title">Total Ventas del Mes</h5>
+                <p class="card-text">15.000$</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 
