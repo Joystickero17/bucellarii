@@ -176,7 +176,7 @@ class VentasUpdate(VentaData, UpdateView):
 
 # DeleteEntityViews - Vistas de Eliminación de entidades
 class ClienteDeleteView(DeleteEntity):
-    model = Producto
+    model = Cliente
     redirect_to = "clientes"
 
 
