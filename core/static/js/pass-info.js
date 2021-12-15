@@ -4,8 +4,9 @@ function pass_info(table_row){
     let headers = document.getElementById("headers").children;
     let yes_delete = document.getElementById("yes_delete");
     
-    yes_delete.href += '/del/'+table_row.children[0].innerText;
+    yes_delete.href += 'del/'+table_row.children[0].innerText;
     container.innerText = '';
+    console.log(yes_delete.href);
 
     for (let index = 0; index < table_row.children.length-1; index++) {
         console.log(headers);
